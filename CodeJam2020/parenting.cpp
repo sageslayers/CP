@@ -18,8 +18,13 @@ while (t-- )  {
         cin >> mat[i][0] ; 
         cin >> mat[i][1] ; 
     }
-    for( int i = 0 i < q ; i ++ ) { 
-		
+    for( int i = 0 i < n ; i ++ ) { 
+		if(mat[i][1]-mat[i][0] == 1 ) {
+			int idx  = mat[i][1] ; 
+			if(vect[idx] == 'C' && vect[idx+1] == 'C'){
+				
+			}
+		}
 	}
     
     
