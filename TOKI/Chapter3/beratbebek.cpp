@@ -22,7 +22,6 @@ int main()
 		cin >> a >> b;  
 		//cout << "A : " << a << " B : " << b << endl ;  
 		it = upper_bound(angka.begin(), angka.end(), a ) ;
-		cout << "## " << *it << endl ; 
 		it2 = upper_bound(angka.begin(),angka.end(), b ) ; 
 		//cout << "It : " << *it << " It2 : " << *it2 << endl ;  
 		if (  *it2 != b )

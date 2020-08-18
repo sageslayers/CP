@@ -1,25 +1,28 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+using namespace std;
 
-using namespace std ;
 
-int main () {
-	int a;  
-	cin >> a ; 
-	vector<int> coin;  
-	for  ( int i = 0 ; i < a ;  i ++ )  {
-		cin >> h[i] ; 
-		
+
+int main(){
+	int n ; 
+	cin >> n ; 
+	vector<int> coin ; 
+	for(int i= 0 ; i < n ; i ++ ) {
+		int x; 
+		cin >> x ; 
+		coin.push_back(x) ;
 	}
-	int x ; 
-	cin >> x ; 
-	int dp[x+1] ;
-	dp[0] = 0 ; 
-	for (int i = 1 ; i <= 10 ; i ++ ) { 
-		for (int j = 0 ; j < coin.size() ;j ++ ) { 
-			
+	int amount ; 
+	cin >> amount ;
+	int dp[amount+1] ;
+	memset(dp,10000,sizeof(dp));
+	dp[0]=  0;  
+	for(int i = 0 ; i < coin.size() ; i ++  ) {
+		for(int j = 0 ; j <= amount ; j ++ ) {
+			if(coin[i] <= j ){
+				dp[j] = min(dp[j],dp[j-coin[i]]+1);
+			}
 		}
 	}
-	  
-	
-	
+	cout << dp[amount] << endl ;
 }
