@@ -1,46 +1,32 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std ;
-int main () { 
-	int n , w ; 
-	cin >> n >> w; 
-	int weight[n];
-	int price[n] ; 
-	int dp[n+1][1001];
-	int memo[n+1][1001];
-	for(int i = 0 ; i < n ; i ++ ) {
-		cin >> weight[i] ;
-	}
-	for(int i = 0 ; i < n ; i ++ ) {
-		cin >> price[i] ;
-	}
-	memset(dp,0,sizeof(dp));
-	memset(memo,0,sizeof(memo));
-	for(int i = 1 ; i <= n ; i ++ ) { 
-		for(int v = 1 ; v <= 1000 ; v ++ ) {
-			if( price[i-1] <= v ) {
-				if(dp[i-1][v-price[i-1]] + price[i-1] == v ){
-					for(int x = i ; x <= n ; x ++ ){
-						dp[x][v] = dp[i-1][v-price[i-1]] + price[i-1];
-						memo[x][v] = memo[i-1][v-price[i-1]] + weight[i-1]; 
-					}
 
+int main() {
+
+
+	int n , w ; 
+	cin >> n >> w ;
+	int weight[n+1] ; 
+	int price[n+1] ; 
+	for(int i = 1 ; i <= n ; i ++ ) cin >> weight[i] ;
+	for(int i = 1 ; i <= n ; i ++ ) cin >> price[i] ; 
+	int dp[100001];
+	memset(dp,0,sizeof(dp));
+	for(int i = 1 ; i <= n ; i ++ ) { 
+			for(int j = 100000 ; j > price[i] ; j-- ){ 
+				if ( dp[j-price[i]] > 0 && dp[j-price[i]]+weight[i] < dp[j] || dp[j-price[i]] > 0 && dp[j] == 0  ){
+					dp[j] = dp[j-price[i]] + weight[i];
 				}
 			}
-		}
+				if( weight[i] < dp[price[i]] || dp[price[i]] == 0 )
+					dp[price[i]] = weight[i] ;
+			
 	}
-	int sum = 0 ; 
-	int I ;
-	int V ; 
-	
-	for(int i = 0 ; i <= n ; i ++  ) {
-		for(int v  = 1 ; v<= 1000 ; v ++ ){
-			if( dp[i][v] > sum && memo[i][v] <= w){
-				sum = dp[i][v] ; 
-
-			}
-		}
+	int best = 0;
+	for(int i = 1 ; i <= 100000 ; i ++ ) {
+		if ( dp[i] <= w && dp[i] != 0 )
+			best = i ; 
 	}
-	
-	cout << sum <<  endl;
+	cout << best << endl ; 
 }

@@ -70,7 +70,7 @@ int main () {
 		}
 		
 	}
-	/*
+	
 	for(int i = 0 ; i <= n ; i ++ ) {
 		cout << "{" << barang[i].first << ","<< barang[i].second << "}| " ;
 		for(int j = 0 ; j<=w ; j++ ) { 
@@ -78,5 +78,5 @@ int main () {
 		}
 		cout << endl ; 
 	}
-	*/
+	
 }

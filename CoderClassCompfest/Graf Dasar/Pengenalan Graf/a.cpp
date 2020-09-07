@@ -5,33 +5,30 @@ using namespace std ;
 int main () { 
 int n , q , last , start; 
 cin >> n >> q ; 
-char xx = 'D';
-if ( q == 0 ) {
-	cout << "Tipe A" << endl ;
-	exit(0);
+char xx ;
+vector<int> adj[n+1] ; 
+while(q--) { 
+	int x , y ; 
+	cin >> x >> y ; 
+	adj[x].push_back(y);
+	adj[y].push_back(x);
 }
-else {
-int x , y ;
-cin >> x >> y; 
-last = y;
-start = x; 
-q--;
+int ganjil = 0 ; 
+for(int i = 1 ; i <= n ; i ++ ) {
+	int cnt = 0 ; 
+	for(auto & r : adj[i] ) 
+			cnt++;
+		if ( cnt % 2 == 1 )
+			ganjil++ ; 
+		
+	}
+if (ganjil == 0 ) {
+	cout << "Tipe A" << endl ; 
 }
-while(q--){
-	int x , y; 
-	cin >> x >> y ;
-	if ( x != last ) {
-		xx = 'C' ; 
-	}
-	last = y; 
-}	
-cout << start << " " << last << " " << xx <<  endl;
-	if( start == last && xx != 'C' ){
-		xx = 'A';
-	}
-	else if ( start != last && xx != 'C' ){
-		xx = 'B' ; 
-	}
-	cout << "Tipe " << xx << endl ;
+else if ( ganjil > 0 && ganjil <= 2 ) 
+	cout << "Tipe B" << endl ; 
+else
+	cout << "Tipe C" << endl ; 
+
 }
 
