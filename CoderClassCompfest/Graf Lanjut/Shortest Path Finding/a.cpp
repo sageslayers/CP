@@ -2,12 +2,19 @@
 
 using namespace std ;
 vector<pair<int,int>> adj[100001];
+vector<int> w ; 
 vector<long long> dist (100001,10000000001);
 set<pair<long long,int>> s ;
 int main() {
 	int n  , m ; 
 	cin >> n  >> m ; 
 	dist[1] = 0 ;
+	for(int i = 0 ; i < m ; i++ ) { 
+	int W; 
+	cin >> W ; 
+	w.push_back(W);
+	}
+	
 	for(int i = 0 ; i < m ; i++ ) { 
 		int a , b, w ; 
 		cin >> a >> b >> w ;
